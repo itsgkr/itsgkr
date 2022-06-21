@@ -16,7 +16,7 @@ int main(int argc, char** argv){
 	struct dirent *directory_entry;
 	int ps_count, fd_self, ps_desc;
 	char flag, *active_process;
-	char proces_name[FILE_NAME_LENGTH], current_process[FILE_NAME_LENGTH], path[FILE_NAME_LENGTH], time_s[FILE_NAME_LENGTH];
+	char proces_name[FILE_NAME_LENGTH], current_process[FILE_NAME_LENGTH], path[FILE_NAME_LENGTH];
 
 	proc_dir_list = opendir("/proc");
 	fd_self = open("/proc/self/fd/0", O_RDONLY);
