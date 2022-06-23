@@ -31,7 +31,7 @@ int splitBySize(char *fileName, int split_size) {
 		while ( (data=fgetc(openFile)) != EOF ) {
 			fputc(data, newFile);
 			++byte_count;
-			if (byte_count > split_size ) {
+			if (byte_count == split_size ) {
 				fclose (newFile);
 				UpdateFileName(fileName,cp_filename);
 				newFile = fopen (cp_filename,"wb+");
