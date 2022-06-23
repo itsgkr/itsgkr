@@ -15,7 +15,7 @@ void UpdateFileName ( char *fileName, char *dstFileName ) {
 }
 
 int splitBySize(char *fileName, int split_size) {
-	FILE* openFile = fopen(fileName, "r");
+	FILE* openFile = fopen(fileName, "rb+");
 	char cp_filename[255];
 	FILE* newFile;
 	char data;
@@ -26,7 +26,7 @@ int splitBySize(char *fileName, int split_size) {
     }
 
 	UpdateFileName(fileName,cp_filename);
-	newFile = (FILE* )fopen (cp_filename,"w");
+	newFile = (FILE* )fopen (cp_filename,"wb+");
 	if ( newFile ) {
 		while ( (data=fgetc(openFile)) != EOF ) {
 			fputc(data, newFile);
@@ -53,7 +53,7 @@ FINISH:
 }
 
 int splitByLineCount ( char *fileName, int split_line_count ) {
-	FILE* openFile = fopen(fileName, "r");
+	FILE* openFile = fopen(fileName, "rb+");
 	char cp_filename[255];
 	FILE* newFile;
 	char data;
@@ -63,7 +63,7 @@ int splitByLineCount ( char *fileName, int split_line_count ) {
         return -1;
     }
 	UpdateFileName(fileName,cp_filename);
-	newFile = (FILE* )fopen (cp_filename,"w");
+	newFile = (FILE* )fopen (cp_filename,"wb+");
 	if ( newFile ) {
 		while ( (data=fgetc(openFile)) != EOF ) {
 			fputc(data, newFile);
@@ -72,7 +72,7 @@ int splitByLineCount ( char *fileName, int split_line_count ) {
 				if ( line_count == split_line_count ) {
 					fclose (newFile);
 					UpdateFileName(fileName,cp_filename);
-					newFile = fopen (cp_filename,"w");
+					newFile = fopen (cp_filename,"wb+");
 					if (!newFile) {
 						printf ("!!!!File Creation Error %d",__LINE__);
 						goto FINISH;
