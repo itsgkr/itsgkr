@@ -34,7 +34,7 @@ int splitBySize(char *fileName, int split_size) {
 			if (byte_count > split_size ) {
 				fclose (newFile);
 				UpdateFileName(fileName,cp_filename);
-				newFile = fopen (cp_filename,"w");
+				newFile = fopen (cp_filename,"wb+");
 				if (!newFile) {
 					printf ("!!!!File Creation Error %d",__LINE__);
 					goto FINISH;
